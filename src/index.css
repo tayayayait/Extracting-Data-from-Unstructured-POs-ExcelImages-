@@ -1,0 +1,106 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* === 거래명세서 자동 생성 프로그램 디자인 토큰 === */
+
+    /* Background */
+    --background: 210 40% 98%; /* #F8FAFC color.bg.app */
+    --foreground: 222.2 84% 4.9%; /* #0F172A color.text.primary */
+
+    /* Card / Surface */
+    --card: 0 0% 100%; /* #FFFFFF color.bg.surface */
+    --card-foreground: 222.2 84% 4.9%;
+
+    /* Popover */
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+
+    /* Primary — Blue (color.primary.600 #2563EB) */
+    --primary: 221.2 83.2% 53.3%;
+    --primary-foreground: 210 40% 98%;
+    /* Primary 50/100/700/800 mappings can be handled via CSS vars or tailwind config */
+    /* Secondary — Use Surface for default Button.Secondary */
+    --secondary: 0 0% 100%;
+    --secondary-foreground: 222.2 84% 4.9%;
+
+    /* Muted (color.bg.muted #F1F5F9, text #475569) */
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+
+    /* Accent */
+    --accent: 210 40% 96.1%;
+    --accent-foreground: 222.2 84% 4.9%;
+
+    /* Destructive — Red (color.danger.600 #DC2626) */
+    --destructive: 0 72.2% 50.6%;
+    --destructive-foreground: 210 40% 98%;
+
+    /* Success — Green (color.success.600 #16A34A) */
+    --success: 142.1 76.2% 36.3%;
+    --success-foreground: 210 40% 98%;
+
+    /* Warning — Amber (color.warning.600 #D97706) */
+    --warning: 38 92% 50%;
+    --warning-foreground: 210 40% 98%;
+
+    /* Info — Cyan (not explicitly listed but keeping structure) */
+    --info: 199 89% 48%;
+    --info-foreground: 0 0% 100%;
+
+    /* Border / Input / Ring */
+    --border: 214.3 31.8% 91.4%; /* #E2E8F0 color.border.default */
+    --input: 214.3 31.8% 91.4%;
+    --ring: 221.2 83.2% 53.3%; /* #2563EB */
+
+    /* Focus */
+    --focus-ring: 212 96% 78%; /* #93C5FD color.focus.ring */
+
+    /* Radius */
+    --radius: 0.625rem; /* 10px / radius.md */
+
+    /* Sidebar */
+    --sidebar-background: 0 0% 100%;
+    --sidebar-foreground: 215.4 16.3% 46.9%;
+    --sidebar-primary: 221.2 83.2% 53.3%;
+    --sidebar-primary-foreground: 210 40% 98%;
+    --sidebar-accent: 210 40% 96.1%;
+    --sidebar-accent-foreground: 222.2 84% 4.9%;
+    --sidebar-border: 214.3 31.8% 91.4%;
+    --sidebar-ring: 221.2 83.2% 53.3%;
+
+    /* Application Layout Tokens */
+    --header-height: 56px;
+    --sidebar-width: 264px;
+    --sidebar-width-collapsed: 72px;
+    --inspector-width: 360px;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-family: "Segoe UI", "Malgun Gothic", Arial, sans-serif;
+    /* Base typography logic */
+    font-size: 13px; /* font.size.sm */
+    line-height: 20px; /* lineHeight.sm */
+    letter-spacing: 0px;
+  }
+
+  
+  /* 포커스 링 — 접근성 */
+  *:focus-visible {
+    outline: 2px solid hsl(var(--focus-ring));
+    outline-offset: 2px;
+  }
+  
+  /* Reduced Motion Override */
+  body.reduce-motion * {
+    animation: none !important;
+    transition: none !important;
+  }
+}

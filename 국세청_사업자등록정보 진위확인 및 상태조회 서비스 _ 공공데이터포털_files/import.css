@@ -1,0 +1,36 @@
+@charset "utf-8";
+
+@import "reset.css";
+@import "jquery-ui-1.12.1.css";
+@import "tooltipster.bundle.css";
+@import "jquery.modal.css";
+@import "swiper.css";
+@import "common.min.css";
+@import "contents.min.css";
+
+.has-tooltip {
+    position: relative;
+    overflow: visible !important;
+}
+
+.has-tooltip .tooltip {
+    visibility: hidden;
+    min-width: 280px;
+    background-color: black;
+    color: #fff;
+    text-align: center;
+    padding: 0;
+    border-radius: 6px;
+    font-weight: normal;
+
+    /* Position the tooltip text - see examples below! */
+    position: absolute;
+    z-index: 1;
+
+    top: 0;
+    left: 105%;
+}
+
+.has-tooltip:hover .tooltip {
+    visibility: visible;
+}

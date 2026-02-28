@@ -1,0 +1,74 @@
+/**
+ * 데이터 제공신청 처리 스크립트
+ * 
+ * @author cjh
+ * @since 2022.09.21
+ *
+ */
+
+/**
+ * 데이터 제공신청 호출
+ * 
+ * @param mberId : 회원ID
+ * @param dpk : publicDataPK
+ * @param ddpk : publicDataDetailPk
+ * @param dataTy : 데이터타입
+ * @param insttCd: 기관코드
+ *
+ */
+function fn_dataOfferReqst(mberId, dataTy, dpk, ddpk, insttCd, adpk) {
+
+	if(fn_empty(dataTy) || fn_empty(dpk) || fn_empty(ddpk) || fn_empty(insttCd))	return;
+	
+	//비로그인 사용자는 사용 불가능 기능
+	if(fn_empty(mberId)){
+		if(confirm("로그인이 필요한 기능입니다. 로그인 화면으로 이동하시겠습니까?")){
+			location.href = "/uim/login/loginView.do";
+			return;
+		};
+		return;
+	}
+	
+	var $errorReportPopup = $('<div class="layer_error_div"></div>');
+	
+	//데이터 셋 화면에 붙일 class 지정
+	if($(".layer_error_div").length > 0 || $("#layer_error_report").length > 0){
+		$('#layer_error_report').remove();
+		$('.layer_error_div').remove();	
+		$(".data-search-view").append($errorReportPopup);
+	}else{
+		$(".data-search-view").append($errorReportPopup);
+	}
+
+	if (dataTy === 'V' && !fn_empty(adpk)) { //표준데이터 오류신고시
+		ddpk = adpk;
+	}
+
+	location.href = '/tcs/dor/insertDataOfferReqstDocView.do?publicDataPk=' + dpk + '&reqstInsttCode=' + insttCd + '';
+	//팝업 호출
+	// $.ajax({
+	// 	type:"POST",
+	// 	url: "/tcs/dor/insertDataOfferReqstDocView.do",
+	// 	data : {publicDataPk : dpk,
+	// 			reqstInsttCode: insttCd},
+	// 	dataType : "html",
+	// 	success: function(html){
+	// 		$(".layer_error_div").empty();
+	// 		$(".layer_error_div").append(html);
+	// 		$("#layer_error_report").modal("open");
+	// 	},
+	// 	error: function(xhr, status, error) {
+	// 		alert("팝업 호출에 실패하였습니다.");
+	// 	}
+	// });
+};
+
+/**
+ * 오류신고 팝업 닫기
+ */
+function fn_closeErrorReportPopup(){
+	$.modal.close();
+	$('#layer_error_report').remove();
+	$('.layer_error_div').remove();	
+}
+

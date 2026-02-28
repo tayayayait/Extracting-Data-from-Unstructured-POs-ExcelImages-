@@ -1,0 +1,39 @@
+@charset "utf-8";
+
+/**
+ * 공통 스타일 파일
+ * @author kms
+ * @since 2020.01.28
+ *
+**/
+
+/* 목록형 테이블 필수 표시 */
+.col-table table .label {display:inline-block; position:relative; padding:0 0 0 11px;}
+.col-table table .label.req {}
+.col-table table .label.req:after {content:'*'; display:inline-block; margin:0 0 0 4px; padding:0; color:#d8265d;}
+
+/*공공데이터 분석서비스 등록 - 분석방법 설명박스*/
+.anals_int {overflow: hidden; height: auto;}
+.anals_int .cont1 {display:block; text-align: left; margin-left: 20px; margin-bottom: 5px; width:95%;}
+.anals_int .cont2 {display:block; text-align: left; margin-left: 32px; margin-bottom: 5px; width:91%;}
+.anals_int h3 {margin-top: 10px; border-bottom: solid 2px #2793db; margin-bottom: 40px; padding-left: 21px; font-size: 24px; line-height: 45px; color: #454545; background: url(/images/biz/anals/graph_bar.png) no-repeat; font-family: 'NGB'; text-align: left;}
+.anals_int h4 {margin-bottom: 14px; padding-left: 21px; font-size: 16px; line-height: 16px; color: #454545; font-family: 'NGB'; margin-top:-20px; text-align: left; margin-left: 10px; background: url(/images/biz/common/ico/ico-arr-right-gray.png) no-repeat;}
+
+.authorbox {margin-left: 30px; width: 90%; height: 200px; background:#CCC; font-family:verdana; font-size:13px; background-color:#FAFAFA; border:1px solid #F0F0F0;}
+.authorbox .left {float:left; width:30%; height:150px;margin:25px;}
+.authorbox .right {float:left;margin-top:25px;width:60%;}
+
+.grapth_title {margin-left:30px; width:90%; height:30px; background:#CCC; font-family:verdana; font-size:13px; background-color:#FAFAFA; border:1px solid #F0F0F0;}
+.grapth_title_left {float:left; width:1%; height:28px; margin:25px;}
+.grapth_title_right {float:left; margin-top:25px; width:60%;}
+
+.authorbox .left span img {width:100%;height:auto;}
+a {cursor:pointer;}
+
+/* 게시판 카테고리 버튼 스타일 */
+.list-cate-wrap .list-cate-area li button.on {color:#FFF; background-color:#3671C8;}
+
+/* 라벨셋 bg-gray 추가 수정 */
+.labelset.bg-gray {background:lightgray; font-weight: bold;}
+
+.a-link.normal {color:#333 !important; text-decoration:none;}

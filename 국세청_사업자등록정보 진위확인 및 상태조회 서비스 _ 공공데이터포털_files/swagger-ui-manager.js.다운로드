@@ -1,0 +1,106 @@
+var SwaggerManager = function(options) {
+    this.options = this.cloneObject(options);
+    this.init();
+}
+
+SwaggerManager.prototype.init = function() {
+    this.loadSwaggerUIByBrowser();
+}
+
+SwaggerManager.prototype.cloneObject = function(obj) {
+    var clone = {};
+    for (var key in obj) {
+        if (typeof obj[key] == "object" && obj[key] != null) {
+            clone[key] = cloneObject(obj[key]);
+        } else {
+            clone[key] = obj[key];
+        }
+    }
+    return clone;
+}
+
+SwaggerManager.prototype.loadSwaggerUIByBrowser = function() {
+    var self = this;
+
+    if(self.isInternetExplorer(self.options.browserAgnet)) {
+        $('#swagger-ui-ie').css('display', 'block');
+    } else {
+       if(self.options.swaggerUrl) {
+           self.loadSwaggerUI(self.options.swaggerUrl);
+       } else if(self.options.swaggerJson) {
+           self.loadSwaggerUIFromJson(self.options.swaggerJson);
+       }
+    }
+}
+
+SwaggerManager.prototype.isInternetExplorer = function(agent) {
+    return (navigator.appName == 'Netscape' && navigator.userAgent.search('Trident') != -1) || (agent.indexOf("msie") != -1);
+}
+
+SwaggerManager.prototype.isChromium = function(agent) {
+    return (agent.indexOf("chrome") != -1);
+}
+
+SwaggerManager.prototype.isFireFox = function(agent) {
+    return (agent.indexOf("mozilla") != -1);
+}
+
+SwaggerManager.prototype.loadSwaggerUI = function(swaggerUrl) {
+    $.getScript('https://unpkg.com/swagger-ui-dist@3.12.1/swagger-ui-standalone-preset.js', function () {
+        $.getScript('/js/swagger-ui/swagger-ui-bundle.js', function () {
+            SwaggerUIBundle({
+                url: swaggerUrl,
+                //url: "http://slb-234269.gov-ncloudslb.com:9090/oas/26399",
+                //url: "http://infuser.odcloud.kr:9090/oas/15060323",
+                dom_id: '#swagger-ui',
+                deepLinking: true,
+                presets: [
+                    SwaggerUIBundle.presets.apis,
+                    SwaggerUIStandalonePreset
+                ],
+                plugins: [
+                    SwaggerUIBundle.plugins.DownloadUrl
+                ],
+                layout: "StandaloneLayout",
+            })
+        })
+    });
+}
+
+SwaggerManager.prototype.loadSwaggerUIFromJson = function(swaggerJson) {
+    var json = JSON.parse(swaggerJson.replaceAll(/(?:\r\n|\r|\n)/g, ''));
+    $.getScript('https://unpkg.com/swagger-ui-dist@3.12.1/swagger-ui-standalone-preset.js', function () {
+        $.getScript('/js/swagger-ui/swagger-ui-bundle.js', function () {
+            SwaggerUIBundle({
+                spec: json,
+                dom_id: '#api-swagger',
+                deepLinking: true,
+                presets: [
+                    SwaggerUIBundle.presets.apis,
+                    SwaggerUIStandalonePreset
+                ],
+                plugins: [
+                    SwaggerUIBundle.plugins.DownloadUrl
+                ],
+                layout: "StandaloneLayout",
+            });
+        });
+    });
+    $.getScript('https://unpkg.com/swagger-ui-dist@3.12.1/swagger-ui-standalone-preset.js', function () {
+        $.getScript('/js/swagger-ui/swagger-ui-bundle.js', function () {
+            SwaggerUIBundle({
+                spec: json,
+                dom_id: '#api-swagger2',
+                deepLinking: true,
+                presets: [
+                    SwaggerUIBundle.presets.apis,
+                    SwaggerUIStandalonePreset
+                ],
+                plugins: [
+                    SwaggerUIBundle.plugins.DownloadUrl
+                ],
+                layout: "StandaloneLayout",
+            });
+        });
+    });
+}
